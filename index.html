@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tymur Tsybulka — Shopify Developer & UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --secondary: #666666;
+      --border: #222222;
+      --font: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a:hover { opacity: 0.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--secondary);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      color: var(--secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-label::before {
+      content: '●';
+      margin-right: 8px;
+      font-size: 8px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .hero-h2 {
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      color: var(--secondary);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--secondary);
+      margin-bottom: 48px;
+      max-width: 400px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--secondary);
+      transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .btn:hover { opacity: 0.6; }
+
+    .btn-primary {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 80px;
+      right: 48px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-number {
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 120px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 11px;
+      color: var(--secondary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 64px;
+    }
+
+    /* ── WORK ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+
+    .project-card:hover { background: #0a0a0a; }
+
+    .project-tag {
+      font-size: 11px;
+      color: var(--secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .project-title {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .project-stack {
+      font-size: 12px;
+      color: var(--secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--secondary);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-link {
+      font-size: 12px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover {
+      opacity: 0.6;
+      border-color: var(--secondary);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .skills-col h3 {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 32px;
+    }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .skills-list li {
+      font-size: 15px;
+      font-weight: 300;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+    }
+
+    .about-text {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
+    }
+
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .fact {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact:first-child { border-top: 1px solid var(--border); }
+
+    .fact-label {
+      font-size: 11px;
+      color: var(--secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      min-width: 80px;
+    }
+
+    .fact-value {
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+      padding: 160px 48px;
+    }
+
+    .contact-heading {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      margin-bottom: 64px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      font-size: 14px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .contact-links a:hover {
+      opacity: 0.6;
+      border-color: var(--secondary);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-size: 12px;
+      color: var(--secondary);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { gap: 20px; }
+
+      #hero { padding: 100px 24px 160px; }
+
+      .hero-stats {
+        position: static;
+        text-align: left;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 32px;
+        margin-top: 48px;
+      }
+
+      section { padding: 80px 24px; }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card { padding: 32px 24px; }
+
+      .skills-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      #contact { padding: 100px 24px; }
+      .contact-links { flex-direction: column; align-items: center; gap: 24px; }
+
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">TS</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-label">Available for work</p>
+    <h1 class="hero-h1">Tymur<br>Tsybulka</h1>
+    <h2 class="hero-h2">Shopify Developer & UI/UX Designer</h2>
+    <p class="hero-desc">Building high-converting e-commerce for US & EU markets</p>
+    <div class="hero-buttons">
+      <a href="#work" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn">Contact</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">$11K+</span>
+        <span class="stat-label">Monthly revenue generated</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Years Figma</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">2+</span>
+        <span class="stat-label">Years Shopify</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <p class="section-label">Selected Work</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <span class="project-tag">Live Project</span>
+        <h3 class="project-title">iTalk — AI Language Platform</h3>
+        <p class="project-stack">React 19 · Gemini AI · Tailwind</p>
+        <p class="project-desc">Open-source language learning app with AI conversations and voice practice</p>
+        <a href="https://italk-opal.vercel.app" target="_blank" rel="noopener" class="project-link">italk-opal.vercel.app ↗</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">Live Project</span>
+        <h3 class="project-title">CatFlix — Netflix Clone</h3>
+        <p class="project-stack">React 19 · TMDB API · Tailwind</p>
+        <p class="project-desc">Netflix-inspired app with real-time search, movie details and favourites</p>
+        <a href="https://react-catflix-ten.vercel.app" target="_blank" rel="noopener" class="project-link">react-catflix-ten.vercel.app ↗</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">E-commerce · $5K/mo</span>
+        <h3 class="project-title">Dropship Perfume Store</h3>
+        <p class="project-stack">Shopify · Liquid · Custom App</p>
+        <p class="project-desc">US market dropshipping store generating $5,000/month profit</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">E-commerce · $6K/mo</span>
+        <h3 class="project-title">Seasonal E-commerce Store</h3>
+        <p class="project-stack">Shopify · Liquid · UI/UX</p>
+        <p class="project-desc">Seasonal store generating $6,000/month for 3-month campaign</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skills-col">
+        <h3>Development</h3>
+        <ul class="skills-list">
+          <li>Shopify / Liquid</li>
+          <li>JavaScript</li>
+          <li>HTML & CSS</li>
+          <li>React</li>
+          <li>Vue.js</li>
+          <li>Node.js</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <h3>Design & Other</h3>
+        <ul class="skills-list">
+          <li>Figma (5 yrs)</li>
+          <li>UI/UX Design</li>
+          <li>Mobile UI</li>
+          <li>SMM</li>
+          <li>Project Management</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <p class="about-text">
+        I'm a Shopify developer and UI/UX designer based in Balingen, Germany. I build e-commerce stores and digital products for US and European markets. I founded and led my own web studio, managing projects end-to-end.
+      </p>
+      <div class="about-facts">
+        <div class="fact">
+          <span class="fact-label">Location</span>
+          <span class="fact-value">Balingen, Germany</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Status</span>
+          <span class="fact-value">Available for full-time positions</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Permit</span>
+          <span class="fact-value">§24 (Germany)</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Languages</span>
+          <span class="fact-value">Ukrainian · English B1 · German A2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="contact-heading">Let's work together</h2>
+    <div class="contact-links">
+      <a href="mailto:tsytim10@gmail.com">tsytim10@gmail.com</a>
+      <a href="https://linkedin.com/in/tymur-tsybulka" target="_blank" rel="noopener">linkedin.com/in/tymur-tsybulka</a>
+      <a href="https://github.com/kenoleeee" target="_blank" rel="noopener">github.com/kenoleeee</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Tymur Tsybulka</span>
+    <span>© 2025</span>
+  </footer>
+
+</body>
+</html>
