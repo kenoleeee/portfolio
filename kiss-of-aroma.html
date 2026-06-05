@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiss of Aroma — Tymur Tsybulka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --secondary: #666666;
+      --border: #222222;
+      --pill-border: #333333;
+      --font: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a:hover { opacity: 0.6; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 32px 48px;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--secondary);
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      color: var(--secondary);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 80px 0 96px;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      color: var(--secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(56px, 10vw, 112px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      color: var(--secondary);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--secondary);
+      margin-bottom: 80px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 64px;
+      flex-wrap: wrap;
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+
+    .stat-number {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── OVERVIEW ── */
+    .overview-text {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--secondary);
+      max-width: 680px;
+    }
+
+    /* ── WHAT I DID ── */
+    .blocks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px 80px;
+    }
+
+    .block-title {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .block-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1.7;
+    }
+
+    /* ── RESULT ── */
+    .result-headline {
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 56px;
+      max-width: 600px;
+    }
+
+    .result-facts {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .result-fact {
+      font-size: 14px;
+      color: var(--secondary);
+      padding-right: 40px;
+      margin-right: 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .result-fact:last-child {
+      border-right: none;
+      padding-right: 0;
+      margin-right: 0;
+    }
+
+    /* ── STACK ── */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text);
+      border: 1px solid var(--pill-border);
+      padding: 6px 14px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── BOTTOM NAV ── */
+    #bottom-nav {
+      padding: 64px 0 80px;
+    }
+
+    .bottom-nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bottom-nav-inner a {
+      font-size: 14px;
+      color: var(--secondary);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      nav { padding: 24px; }
+
+      #hero { padding: 56px 0 72px; }
+      .hero-stats { gap: 40px; }
+
+      .blocks-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .result-facts { flex-direction: column; gap: 16px; }
+      .result-fact { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+      .result-fact:last-child { border-bottom: none; padding-bottom: 0; }
+
+      .section { padding: 56px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 28px; }
+      .stat-number { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">TS</a>
+    <a href="index.html#work" class="nav-back">← Back to Work</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <section id="hero">
+      <p class="hero-tag">E-commerce · Shopify · US Market</p>
+      <h1 class="hero-h1">Kiss of Aroma</h1>
+      <p class="hero-sub">Luxury Perfume Store — Built to Generate Revenue</p>
+      <p class="hero-tagline">"Built a revenue machine, not just a website."</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">$5,000/mo</span>
+          <span class="stat-label">Monthly Profit</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Design & Development</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">Solo</span>
+          <span class="stat-label">Built and Launched</span>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- OVERVIEW -->
+    <section class="section">
+      <p class="section-label">Overview</p>
+      <p class="overview-text">Kiss of Aroma is a premium perfume dropshipping store built from scratch for the US market. The goal was clear — maximise revenue through smart engineering and conversion optimisation. Within the first months the store was generating $5,000 per month in profit, operating as a fully automated sales machine.</p>
+    </section>
+
+    <hr />
+
+    <!-- WHAT I DID -->
+    <section class="section">
+      <p class="section-label">What I Did</p>
+      <div class="blocks-grid">
+
+        <div class="block">
+          <h3 class="block-title">Luxury UI/UX Design</h3>
+          <p class="block-text">Designed a premium visual experience that matched the high price point — every pixel built to convert. Sticky promo banners, seasonal campaigns like Mother's Day, and a mobile-first layout that felt as premium as the product.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="block-title">Bundle & Upsell Funnels</h3>
+          <p class="block-text">Engineered custom bundle and upsell funnels that pushed customers toward higher-value orders on every visit — directly increasing average order value with every transaction.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="block-title">Klaviyo Integration</h3>
+          <p class="block-text">Full Klaviyo setup — lead capture forms, dynamic pop-ups with 15% discount offers, and automated email flows that brought customers back and converted abandoned carts.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="block-title">Performance Optimisation</h3>
+          <p class="block-text">Delivered perfect mobile performance despite running multiple third-party marketing apps simultaneously. Zero speed compromise, seamless experience from first click to checkout.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- RESULT -->
+    <section class="section">
+      <p class="section-label">Result</p>
+      <p class="result-headline">A store that didn't just look good — it made money.</p>
+      <div class="result-facts">
+        <span class="result-fact">$5,000 / month profit</span>
+        <span class="result-fact">Automated sales funnel</span>
+        <span class="result-fact">High repeat purchase rate</span>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- STACK -->
+    <section class="section">
+      <p class="section-label">Tech Stack</p>
+      <div class="pills">
+        <span class="pill">Shopify Advanced</span>
+        <span class="pill">Liquid</span>
+        <span class="pill">Klaviyo</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">HTML & CSS</span>
+        <span class="pill">CRO Strategy</span>
+        <span class="pill">Dropshipping Architecture</span>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- BOTTOM NAV -->
+    <section id="bottom-nav">
+      <div class="bottom-nav-inner">
+        <a href="index.html#work">← Back to Work</a>
+        <a href="index.html#contact">Next Project →</a>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
