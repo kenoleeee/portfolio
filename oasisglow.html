@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kiss of Aroma — Tymur Tsybulka</title>
+  <title>OasisGlow — Tymur Tsybulka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -43,7 +43,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ── LAYOUT ── */
     .container {
       max-width: 960px;
       margin: 0 auto;
@@ -127,7 +126,11 @@
       flex-wrap: wrap;
     }
 
-    .stat { display: flex; flex-direction: column; gap: 4px; }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
     .stat-number {
       font-size: clamp(28px, 4vw, 40px);
@@ -184,7 +187,6 @@
 
     .result-facts {
       display: flex;
-      gap: 0;
       flex-wrap: wrap;
     }
 
@@ -245,16 +247,23 @@
 
       .blocks-grid { grid-template-columns: 1fr; gap: 40px; }
 
-      .result-facts { flex-direction: column; gap: 16px; }
-      .result-fact { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-      .result-fact:last-child { border-bottom: none; padding-bottom: 0; }
+      .result-facts { flex-direction: column; gap: 0; }
+      .result-fact {
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+      }
+      .result-fact:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 
       .section { padding: 56px 0; }
+      #bottom-nav { padding: 48px 0 64px; }
     }
 
     @media (max-width: 480px) {
       .hero-stats { gap: 28px; }
-      .stat-number { font-size: 28px; }
     }
   </style>
 </head>
@@ -270,22 +279,22 @@
 
     <!-- HERO -->
     <section id="hero">
-      <p class="hero-tag">E-commerce · Shopify · US Market</p>
-      <h1 class="hero-h1">Kiss of Aroma</h1>
-      <p class="hero-sub">Luxury Perfume Store — Built to Generate Revenue</p>
-      <p class="hero-tagline">"Built a revenue machine, not just a website."</p>
+      <p class="hero-tag">E-commerce · Shopify · US Market · Seasonal</p>
+      <h1 class="hero-h1">OasisGlow</h1>
+      <p class="hero-sub">Seasonal Home & Beach Store — $6K/Month in 3 Months</p>
+      <p class="hero-tagline">"Seasonal store. Three months. $6,000/month."</p>
       <div class="hero-stats">
         <div class="stat">
-          <span class="stat-number">$5,000/mo</span>
+          <span class="stat-number">$6,000/mo</span>
           <span class="stat-label">Monthly Profit</span>
         </div>
         <div class="stat">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Design & Development</span>
+          <span class="stat-number">3 Months</span>
+          <span class="stat-label">Campaign Duration</span>
         </div>
         <div class="stat">
-          <span class="stat-number">Solo</span>
-          <span class="stat-label">Built and Launched</span>
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Design, Dev & Marketing</span>
         </div>
       </div>
     </section>
@@ -295,7 +304,7 @@
     <!-- OVERVIEW -->
     <section class="section">
       <p class="section-label">Overview</p>
-      <p class="overview-text">Kiss of Aroma is a premium perfume dropshipping store built from scratch for the US market. The goal was clear — maximise revenue through smart engineering and conversion optimisation. Within the first months the store was generating $5,000 per month in profit, operating as a fully automated sales machine.</p>
+      <p class="overview-text">OasisGlow is a seasonal e-commerce store built for the US market selling home, beach and pool lifestyle products. The challenge was to build fast, launch fast, and generate revenue before the season ends. Result: $6,000 per month in profit across a 3-month campaign, fully automated through dropshipping via DSers.</p>
     </section>
 
     <hr />
@@ -306,23 +315,23 @@
       <div class="blocks-grid">
 
         <div class="block">
-          <h3 class="block-title">Luxury UI/UX Design</h3>
-          <p class="block-text">Designed a premium visual experience that matched the high price point — every pixel built to convert. Sticky promo banners, seasonal campaigns like Mother's Day, and a mobile-first layout that felt as premium as the product.</p>
+          <h3 class="block-title">Custom Shopify Theme</h3>
+          <p class="block-text">Designed and built a complete custom theme from scratch — clean, lifestyle-focused visual identity built to convert summer shoppers on both desktop and mobile.</p>
         </div>
 
         <div class="block">
-          <h3 class="block-title">Bundle & Upsell Funnels</h3>
-          <p class="block-text">Engineered custom bundle and upsell funnels that pushed customers toward higher-value orders on every visit — directly increasing average order value with every transaction.</p>
+          <h3 class="block-title">DSers Dropshipping Pipeline</h3>
+          <p class="block-text">Configured full DSers dropshipping setup for seamless automated order fulfilment. Zero manual work — orders processed and fulfilled automatically around the clock.</p>
         </div>
 
         <div class="block">
-          <h3 class="block-title">Klaviyo Integration</h3>
-          <p class="block-text">Full Klaviyo setup — lead capture forms, dynamic pop-ups with 15% discount offers, and automated email flows that brought customers back and converted abandoned carts.</p>
+          <h3 class="block-title">Klaviyo & Email Marketing</h3>
+          <p class="block-text">Integrated Klaviyo for lead capture, pop-up forms and automated email flows that recovered abandoned carts and drove repeat purchases throughout the season.</p>
         </div>
 
         <div class="block">
-          <h3 class="block-title">Performance Optimisation</h3>
-          <p class="block-text">Delivered perfect mobile performance despite running multiple third-party marketing apps simultaneously. Zero speed compromise, seamless experience from first click to checkout.</p>
+          <h3 class="block-title">Upsell & AOV Optimisation</h3>
+          <p class="block-text">Implemented upsell apps to maximise average order value on every transaction. Every customer touchpoint was optimised to spend more per visit.</p>
         </div>
 
       </div>
@@ -333,11 +342,11 @@
     <!-- RESULT -->
     <section class="section">
       <p class="section-label">Result</p>
-      <p class="result-headline">A store that didn't just look good — it made money.</p>
+      <p class="result-headline">A seasonal machine that ran itself.</p>
       <div class="result-facts">
-        <span class="result-fact">$5,000 / month profit</span>
-        <span class="result-fact">Automated sales funnel</span>
-        <span class="result-fact">High repeat purchase rate</span>
+        <span class="result-fact">$6,000 / month profit</span>
+        <span class="result-fact">3-month campaign</span>
+        <span class="result-fact">Fully automated fulfilment</span>
       </div>
     </section>
 
@@ -347,13 +356,13 @@
     <section class="section">
       <p class="section-label">Tech Stack</p>
       <div class="pills">
-        <span class="pill">Shopify Advanced</span>
-        <span class="pill">Liquid</span>
+        <span class="pill">Shopify</span>
+        <span class="pill">Custom Liquid</span>
         <span class="pill">Klaviyo</span>
+        <span class="pill">DSers</span>
+        <span class="pill">Upsell Apps</span>
         <span class="pill">JavaScript</span>
         <span class="pill">HTML & CSS</span>
-        <span class="pill">CRO Strategy</span>
-        <span class="pill">Dropshipping Architecture</span>
       </div>
     </section>
 
@@ -363,7 +372,7 @@
     <section id="bottom-nav">
       <div class="bottom-nav-inner">
         <a href="index.html#work">← Back to Work</a>
-        <a href="oasisglow.html">Next Project →</a>
+        <a href="kiss-of-aroma.html">Next Project →</a>
       </div>
     </section>
 
