@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OasisGlow — Tymur Tsybulka</title>
+  <title>CASTO — Tymur Tsybulka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -221,6 +221,42 @@
       letter-spacing: 0.02em;
     }
 
+    /* ── LINKS ── */
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-link-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .link-label {
+      font-size: 12px;
+      color: var(--secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      min-width: 100px;
+      flex-shrink: 0;
+    }
+
+    .link-url {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .link-url:hover {
+      opacity: 0.6;
+      border-color: var(--secondary);
+    }
+
     /* ── BOTTOM NAV ── */
     #bottom-nav {
       padding: 64px 0 80px;
@@ -258,6 +294,9 @@
       }
       .result-fact:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 
+      .project-link-item { flex-direction: column; gap: 6px; }
+      .link-label { min-width: unset; }
+
       .section { padding: 56px 0; }
       #bottom-nav { padding: 48px 0 64px; }
     }
@@ -279,22 +318,22 @@
 
     <!-- HERO -->
     <section id="hero">
-      <p class="hero-tag">E-commerce · Shopify · US Market · Seasonal</p>
-      <h1 class="hero-h1">OasisGlow</h1>
-      <p class="hero-sub">Seasonal Home & Beach Store — $6K/Month in 3 Months</p>
-      <p class="hero-tagline">"Seasonal store. Three months. $6,000/month."</p>
+      <p class="hero-tag">E-commerce · Shopify · US Market · Custom Theme</p>
+      <h1 class="hero-h1">CASTO</h1>
+      <p class="hero-sub">Premium Men's Brand — Custom Shopify From Scratch</p>
+      <p class="hero-tagline">"No templates. Built brutal from scratch."</p>
       <div class="hero-stats">
         <div class="stat">
-          <span class="stat-number">$6,000/mo</span>
-          <span class="stat-label">Monthly Profit</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">3 Months</span>
-          <span class="stat-label">Campaign Duration</span>
+          <span class="stat-number">0%</span>
+          <span class="stat-label">Template Used</span>
         </div>
         <div class="stat">
           <span class="stat-number">100%</span>
-          <span class="stat-label">Design, Dev & Marketing</span>
+          <span class="stat-label">Custom Code</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">US</span>
+          <span class="stat-label">Target Market</span>
         </div>
       </div>
     </section>
@@ -304,7 +343,7 @@
     <!-- OVERVIEW -->
     <section class="section">
       <p class="section-label">Overview</p>
-      <p class="overview-text">OasisGlow is a seasonal e-commerce store built for the US market selling home, beach and pool lifestyle products. The challenge was to build fast, launch fast, and generate revenue before the season ends. Result: $6,000 per month in profit across a 3-month campaign, fully automated through dropshipping via DSers.</p>
+      <p class="overview-text">CASTO is a premium men's aesthetics brand targeting the US market. The brief was simple — no generic templates, no compromises. Build a unique dark masculine identity from zero that resonates with the audience and drives sales. The result is a fully custom storefront that looks nothing like any other Shopify store.</p>
     </section>
 
     <hr />
@@ -316,22 +355,22 @@
 
         <div class="block">
           <h3 class="block-title">Custom Shopify Theme</h3>
-          <p class="block-text">Designed and built a complete custom theme from scratch — clean, lifestyle-focused visual identity built to convert summer shoppers on both desktop and mobile.</p>
+          <p class="block-text">Built a complete theme from scratch using Liquid, JavaScript and CSS — every line written by hand. Zero template dependencies, zero compromises on the design vision.</p>
         </div>
 
         <div class="block">
-          <h3 class="block-title">DSers Dropshipping Pipeline</h3>
-          <p class="block-text">Configured full DSers dropshipping setup for seamless automated order fulfilment. Zero manual work — orders processed and fulfilled automatically around the clock.</p>
+          <h3 class="block-title">Dark Premium UI/UX</h3>
+          <p class="block-text">Designed a high-end dark interface with sharp serif typography and a scientific authority aesthetic. Every design decision made to match the brand's brutal masculine positioning.</p>
         </div>
 
         <div class="block">
-          <h3 class="block-title">Klaviyo & Email Marketing</h3>
-          <p class="block-text">Integrated Klaviyo for lead capture, pop-up forms and automated email flows that recovered abandoned carts and drove repeat purchases throughout the season.</p>
+          <h3 class="block-title">Custom Interactive Elements</h3>
+          <p class="block-text">Engineered a dynamic marquee banner, unique product cards with smooth interactions, and a seamless Add to Bag flow that removes every friction point from the purchase journey.</p>
         </div>
 
         <div class="block">
-          <h3 class="block-title">Upsell & AOV Optimisation</h3>
-          <p class="block-text">Implemented upsell apps to maximise average order value on every transaction. Every customer touchpoint was optimised to spend more per visit.</p>
+          <h3 class="block-title">US Market Optimisation</h3>
+          <p class="block-text">Fully optimised for the competitive US e-commerce market — lightning-fast load times, perfect mobile experience on every device, ready to compete at the highest level.</p>
         </div>
 
       </div>
@@ -342,11 +381,11 @@
     <!-- RESULT -->
     <section class="section">
       <p class="section-label">Result</p>
-      <p class="result-headline">A seasonal machine that ran itself.</p>
+      <p class="result-headline">A storefront that stands out in a sea of identical Shopify stores.</p>
       <div class="result-facts">
-        <span class="result-fact">$6,000 / month profit</span>
-        <span class="result-fact">3-month campaign</span>
-        <span class="result-fact">Fully automated fulfilment</span>
+        <span class="result-fact">100% custom — zero templates</span>
+        <span class="result-fact">Dark premium UI/UX</span>
+        <span class="result-fact">US market ready</span>
       </div>
     </section>
 
@@ -357,12 +396,24 @@
       <p class="section-label">Tech Stack</p>
       <div class="pills">
         <span class="pill">Shopify</span>
-        <span class="pill">Custom Liquid</span>
-        <span class="pill">Klaviyo</span>
-        <span class="pill">DSers</span>
-        <span class="pill">Upsell Apps</span>
+        <span class="pill">Liquid</span>
         <span class="pill">JavaScript</span>
         <span class="pill">HTML & CSS</span>
+        <span class="pill">UI/UX Design</span>
+        <span class="pill">E-commerce Strategy</span>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- LINKS -->
+    <section class="section">
+      <p class="section-label">Live Project</p>
+      <div class="links-list">
+        <div class="project-link-item">
+          <span class="link-label">Visit Site</span>
+          <a href="https://castoclub.com" target="_blank" rel="noopener" class="link-url">castoclub.com ↗</a>
+        </div>
       </div>
     </section>
 
@@ -372,7 +423,7 @@
     <section id="bottom-nav">
       <div class="bottom-nav-inner">
         <a href="index.html#work">← Back to Work</a>
-        <a href="casto.html">Next Project →</a>
+        <a href="index.html#work">Next Project →</a>
       </div>
     </section>
 
