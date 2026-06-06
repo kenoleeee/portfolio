@@ -45,6 +45,11 @@
     .result-fact { font-size:14px; color:var(--secondary); padding-right:40px; margin-right:40px; border-right:1px solid var(--border); }
     .result-fact:last-child { border-right:none; padding-right:0; margin-right:0; }
     .pills { display:flex; flex-wrap:wrap; gap:10px; }
+    .links-list { display:flex; flex-direction:column; gap:20px; }
+    .project-link-item { display:flex; align-items:baseline; gap:16px; }
+    .link-label { font-size:12px; color:var(--secondary); letter-spacing:.04em; text-transform:uppercase; min-width:100px; flex-shrink:0; }
+    .link-url { font-size:15px; font-weight:300; color:var(--text); border-bottom:1px solid var(--border); padding-bottom:2px; transition:opacity .2s, border-color .2s; }
+    .link-url:hover { opacity:.6; border-color:var(--secondary); }
     .pill { font-size:12px; font-weight:400; color:var(--text); border:1px solid var(--pill-border); padding:6px 14px; border-radius:4px; letter-spacing:.02em; }
     #bottom-nav { padding:64px 0 80px; }
     .bottom-nav-inner { display:flex; justify-content:space-between; align-items:center; }
@@ -144,6 +149,18 @@
     <hr />
 
     <section class="section">
+      <p class="section-label" data-i18n="links.label">Live Project</p>
+      <div class="links-list">
+        <div class="project-link-item">
+          <span class="link-label" data-i18n="link1.label">Visit Site</span>
+          <a href="https://kissofaroma.shop/" target="_blank" rel="noopener" class="link-url">kissofaroma.shop ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
       <p class="section-label" data-i18n="stack.label">Tech Stack</p>
       <div class="pills">
         <span class="pill">Shopify Advanced</span>
@@ -190,6 +207,7 @@
         'result.headline': 'A store that didn\'t just look good — it made money.',
         'rf1': '$5,000 / month profit', 'rf2': 'Automated sales funnel', 'rf3': 'High repeat purchase rate',
         'stack.label': 'Tech Stack',
+        'links.label': 'Live Project', 'link1.label': 'Visit Site',
       },
       de: {
         'nav.back': '← Zurück zu Projekten', 'nav.next': 'Nächstes Projekt →',
@@ -212,6 +230,7 @@
         'result.headline': 'Ein Shop, der nicht nur gut aussah — er verdiente Geld.',
         'rf1': '$5.000 / Monat Gewinn', 'rf2': 'Automatisierter Verkaufsfunnel', 'rf3': 'Hohe Wiederkaufrate',
         'stack.label': 'Tech Stack',
+        'links.label': 'Live-Projekt', 'link1.label': 'Website besuchen',
       }
     };
     function applyLang(lang) {
