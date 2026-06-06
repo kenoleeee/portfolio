@@ -9,343 +9,142 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #000000;
-      --text: #ffffff;
-      --secondary: #666666;
-      --border: #222222;
-      --pill-border: #333333;
-      --font: 'DM Sans', sans-serif;
-    }
-
+    :root { --bg:#000; --text:#fff; --secondary:#666; --border:#222; --pill-border:#333; --font:'DM Sans',sans-serif; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    body { background:var(--bg); color:var(--text); font-family:var(--font); font-weight:400; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; transition:opacity .2s; }
+    a:hover { opacity:.6; }
+    hr { border:none; border-top:1px solid var(--border); }
+    .container { max-width:960px; margin:0 auto; padding:0 48px; }
+    nav { padding:32px 48px; max-width:960px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .nav-logo { font-size:14px; font-weight:500; letter-spacing:.05em; }
+    .nav-right { display:flex; align-items:center; gap:24px; }
+    .nav-back { font-size:13px; color:var(--secondary); }
+    .lang-switch { display:flex; gap:8px; align-items:center; }
+    .lang-btn { font-family:var(--font); font-size:12px; font-weight:500; letter-spacing:.06em; color:var(--secondary); background:none; border:none; cursor:pointer; padding:0; transition:opacity .2s; }
+    .lang-btn:hover { opacity:.6; }
+    .lang-btn.active { color:var(--text); }
+    .lang-divider { font-size:11px; color:var(--border); }
+    .section { padding:80px 0; }
+    .section-label { font-size:11px; color:var(--secondary); letter-spacing:.12em; text-transform:uppercase; margin-bottom:40px; }
+    #hero { padding:80px 0 96px; }
+    .hero-tag { font-size:12px; color:var(--secondary); letter-spacing:.08em; text-transform:uppercase; margin-bottom:32px; }
+    .hero-h1 { font-size:clamp(56px,10vw,112px); font-weight:300; line-height:.95; letter-spacing:-.04em; margin-bottom:24px; }
+    .hero-sub { font-size:clamp(16px,2.5vw,22px); font-weight:300; color:var(--secondary); letter-spacing:-.01em; margin-bottom:20px; }
+    .hero-tagline { font-size:15px; font-style:italic; font-weight:300; color:var(--secondary); margin-bottom:80px; }
+    .hero-stats { display:flex; gap:64px; flex-wrap:wrap; }
+    .stat { display:flex; flex-direction:column; gap:4px; }
+    .stat-number { font-size:clamp(28px,4vw,40px); font-weight:300; letter-spacing:-.03em; line-height:1; }
+    .stat-label { font-size:11px; color:var(--secondary); letter-spacing:.06em; text-transform:uppercase; }
+    .overview-text { font-size:clamp(16px,2vw,20px); font-weight:300; line-height:1.8; color:var(--secondary); max-width:680px; }
+    .blocks-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px 80px; }
+    .block-title { font-size:15px; font-weight:500; letter-spacing:-.01em; margin-bottom:12px; }
+    .block-text { font-size:14px; font-weight:300; color:var(--secondary); line-height:1.7; }
+    .result-headline { font-size:clamp(22px,3.5vw,36px); font-weight:300; letter-spacing:-.02em; margin-bottom:56px; max-width:600px; }
+    .result-facts { display:flex; flex-wrap:wrap; }
+    .result-fact { font-size:14px; color:var(--secondary); padding-right:40px; margin-right:40px; border-right:1px solid var(--border); }
+    .result-fact:last-child { border-right:none; padding-right:0; margin-right:0; }
+    .pills { display:flex; flex-wrap:wrap; gap:10px; }
+    .pill { font-size:12px; font-weight:400; color:var(--text); border:1px solid var(--pill-border); padding:6px 14px; border-radius:4px; letter-spacing:.02em; }
+    #bottom-nav { padding:64px 0 80px; }
+    .bottom-nav-inner { display:flex; justify-content:space-between; align-items:center; }
+    .bottom-nav-inner a { font-size:14px; color:var(--secondary); }
+    @media (max-width:768px) {
+      .container { padding:0 24px; } nav { padding:24px; }
+      #hero { padding:56px 0 72px; } .hero-stats { gap:40px; }
+      .blocks-grid { grid-template-columns:1fr; gap:40px; }
+      .result-facts { flex-direction:column; }
+      .result-fact { border-right:none; padding-right:0; margin-right:0; border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:16px; }
+      .result-fact:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
+      .section { padding:56px 0; } #bottom-nav { padding:48px 0 64px; }
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    a:hover { opacity: 0.6; }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ── NAV ── */
-    nav {
-      padding: 32px 48px;
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-logo {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-back {
-      font-size: 13px;
-      color: var(--secondary);
-    }
-
-    /* ── SECTION BASE ── */
-    .section {
-      padding: 80px 0;
-    }
-
-    .section-label {
-      font-size: 11px;
-      color: var(--secondary);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    /* ── HERO ── */
-    #hero {
-      padding: 80px 0 96px;
-    }
-
-    .hero-tag {
-      font-size: 12px;
-      color: var(--secondary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-
-    .hero-h1 {
-      font-size: clamp(56px, 10vw, 112px);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      margin-bottom: 24px;
-    }
-
-    .hero-sub {
-      font-size: clamp(16px, 2.5vw, 22px);
-      font-weight: 300;
-      color: var(--secondary);
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-
-    .hero-tagline {
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--secondary);
-      margin-bottom: 80px;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 64px;
-      flex-wrap: wrap;
-    }
-
-    .stat { display: flex; flex-direction: column; gap: 4px; }
-
-    .stat-number {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 300;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--secondary);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* ── OVERVIEW ── */
-    .overview-text {
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--secondary);
-      max-width: 680px;
-    }
-
-    /* ── WHAT I DID ── */
-    .blocks-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px 80px;
-    }
-
-    .block-title {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    .block-text {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--secondary);
-      line-height: 1.7;
-    }
-
-    /* ── RESULT ── */
-    .result-headline {
-      font-size: clamp(22px, 3.5vw, 36px);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      margin-bottom: 56px;
-      max-width: 600px;
-    }
-
-    .result-facts {
-      display: flex;
-      gap: 0;
-      flex-wrap: wrap;
-    }
-
-    .result-fact {
-      font-size: 14px;
-      color: var(--secondary);
-      padding-right: 40px;
-      margin-right: 40px;
-      border-right: 1px solid var(--border);
-    }
-
-    .result-fact:last-child {
-      border-right: none;
-      padding-right: 0;
-      margin-right: 0;
-    }
-
-    /* ── STACK ── */
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .pill {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text);
-      border: 1px solid var(--pill-border);
-      padding: 6px 14px;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-    }
-
-    /* ── BOTTOM NAV ── */
-    #bottom-nav {
-      padding: 64px 0 80px;
-    }
-
-    .bottom-nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .bottom-nav-inner a {
-      font-size: 14px;
-      color: var(--secondary);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-      nav { padding: 24px; }
-
-      #hero { padding: 56px 0 72px; }
-      .hero-stats { gap: 40px; }
-
-      .blocks-grid { grid-template-columns: 1fr; gap: 40px; }
-
-      .result-facts { flex-direction: column; gap: 16px; }
-      .result-fact { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-      .result-fact:last-child { border-bottom: none; padding-bottom: 0; }
-
-      .section { padding: 56px 0; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-stats { gap: 28px; }
-      .stat-number { font-size: 28px; }
-    }
+    @media (max-width:480px) { .hero-stats { gap:28px; } }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">TS</a>
-    <a href="index.html#work" class="nav-back">← Back to Work</a>
+    <div class="nav-right">
+      <a href="index.html#work" class="nav-back" data-i18n="nav.back">← Back to Work</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-divider">/</span>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
   </nav>
 
   <div class="container">
 
-    <!-- HERO -->
     <section id="hero">
-      <p class="hero-tag">E-commerce · Shopify · US Market</p>
+      <p class="hero-tag" data-i18n="hero.tag">E-commerce · Shopify · US Market</p>
       <h1 class="hero-h1">Kiss of Aroma</h1>
-      <p class="hero-sub">Luxury Perfume Store — Built to Generate Revenue</p>
-      <p class="hero-tagline">"Built a revenue machine, not just a website."</p>
+      <p class="hero-sub" data-i18n="hero.sub">Luxury Perfume Store — Built to Generate Revenue</p>
+      <p class="hero-tagline" data-i18n="hero.tagline">"Built a revenue machine, not just a website."</p>
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-number">$5,000/mo</span>
-          <span class="stat-label">Monthly Profit</span>
+          <span class="stat-label" data-i18n="stat1">Monthly Profit</span>
         </div>
         <div class="stat">
           <span class="stat-number">100%</span>
-          <span class="stat-label">Design & Development</span>
+          <span class="stat-label" data-i18n="stat2">Design & Development</span>
         </div>
         <div class="stat">
           <span class="stat-number">Solo</span>
-          <span class="stat-label">Built and Launched</span>
+          <span class="stat-label" data-i18n="stat3">Built and Launched</span>
         </div>
       </div>
     </section>
 
     <hr />
 
-    <!-- OVERVIEW -->
     <section class="section">
-      <p class="section-label">Overview</p>
-      <p class="overview-text">Kiss of Aroma is a premium perfume dropshipping store built from scratch for the US market. The goal was clear — maximise revenue through smart engineering and conversion optimisation. Within the first months the store was generating $5,000 per month in profit, operating as a fully automated sales machine.</p>
+      <p class="section-label" data-i18n="overview.label">Overview</p>
+      <p class="overview-text" data-i18n="overview.text">Kiss of Aroma is a premium perfume dropshipping store built from scratch for the US market. The goal was clear — maximise revenue through smart engineering and conversion optimisation. Within the first months the store was generating $5,000 per month in profit, operating as a fully automated sales machine.</p>
     </section>
 
     <hr />
 
-    <!-- WHAT I DID -->
     <section class="section">
-      <p class="section-label">What I Did</p>
+      <p class="section-label" data-i18n="did.label">What I Did</p>
       <div class="blocks-grid">
-
         <div class="block">
-          <h3 class="block-title">Luxury UI/UX Design</h3>
-          <p class="block-text">Designed a premium visual experience that matched the high price point — every pixel built to convert. Sticky promo banners, seasonal campaigns like Mother's Day, and a mobile-first layout that felt as premium as the product.</p>
+          <h3 class="block-title" data-i18n="b1.title">Luxury UI/UX Design</h3>
+          <p class="block-text" data-i18n="b1.text">Designed a premium visual experience that matched the high price point — every pixel built to convert. Sticky promo banners, seasonal campaigns like Mother's Day, and a mobile-first layout that felt as premium as the product.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">Bundle & Upsell Funnels</h3>
-          <p class="block-text">Engineered custom bundle and upsell funnels that pushed customers toward higher-value orders on every visit — directly increasing average order value with every transaction.</p>
+          <h3 class="block-title" data-i18n="b2.title">Bundle & Upsell Funnels</h3>
+          <p class="block-text" data-i18n="b2.text">Engineered custom bundle and upsell funnels that pushed customers toward higher-value orders on every visit — directly increasing average order value with every transaction.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">Klaviyo Integration</h3>
-          <p class="block-text">Full Klaviyo setup — lead capture forms, dynamic pop-ups with 15% discount offers, and automated email flows that brought customers back and converted abandoned carts.</p>
+          <h3 class="block-title" data-i18n="b3.title">Klaviyo Integration</h3>
+          <p class="block-text" data-i18n="b3.text">Full Klaviyo setup — lead capture forms, dynamic pop-ups with 15% discount offers, and automated email flows that brought customers back and converted abandoned carts.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">Performance Optimisation</h3>
-          <p class="block-text">Delivered perfect mobile performance despite running multiple third-party marketing apps simultaneously. Zero speed compromise, seamless experience from first click to checkout.</p>
+          <h3 class="block-title" data-i18n="b4.title">Performance Optimisation</h3>
+          <p class="block-text" data-i18n="b4.text">Delivered perfect mobile performance despite running multiple third-party marketing apps simultaneously. Zero speed compromise, seamless experience from first click to checkout.</p>
         </div>
-
       </div>
     </section>
 
     <hr />
 
-    <!-- RESULT -->
     <section class="section">
-      <p class="section-label">Result</p>
-      <p class="result-headline">A store that didn't just look good — it made money.</p>
+      <p class="section-label" data-i18n="result.label">Result</p>
+      <p class="result-headline" data-i18n="result.headline">A store that didn't just look good — it made money.</p>
       <div class="result-facts">
-        <span class="result-fact">$5,000 / month profit</span>
-        <span class="result-fact">Automated sales funnel</span>
-        <span class="result-fact">High repeat purchase rate</span>
+        <span class="result-fact" data-i18n="rf1">$5,000 / month profit</span>
+        <span class="result-fact" data-i18n="rf2">Automated sales funnel</span>
+        <span class="result-fact" data-i18n="rf3">High repeat purchase rate</span>
       </div>
     </section>
 
     <hr />
 
-    <!-- STACK -->
     <section class="section">
-      <p class="section-label">Tech Stack</p>
+      <p class="section-label" data-i18n="stack.label">Tech Stack</p>
       <div class="pills">
         <span class="pill">Shopify Advanced</span>
         <span class="pill">Liquid</span>
@@ -359,15 +158,71 @@
 
     <hr />
 
-    <!-- BOTTOM NAV -->
     <section id="bottom-nav">
       <div class="bottom-nav-inner">
-        <a href="index.html#work">← Back to Work</a>
-        <a href="oasisglow.html">Next Project →</a>
+        <a href="index.html#work" data-i18n="nav.back">← Back to Work</a>
+        <a href="oasisglow.html" data-i18n="nav.next">Next Project →</a>
       </div>
     </section>
 
   </div>
 
+  <script>
+    const t = {
+      en: {
+        'nav.back': '← Back to Work', 'nav.next': 'Next Project →',
+        'hero.tag': 'E-commerce · Shopify · US Market',
+        'hero.sub': 'Luxury Perfume Store — Built to Generate Revenue',
+        'hero.tagline': '"Built a revenue machine, not just a website."',
+        'stat1': 'Monthly Profit', 'stat2': 'Design & Development', 'stat3': 'Built and Launched',
+        'overview.label': 'Overview',
+        'overview.text': 'Kiss of Aroma is a premium perfume dropshipping store built from scratch for the US market. The goal was clear — maximise revenue through smart engineering and conversion optimisation. Within the first months the store was generating $5,000 per month in profit, operating as a fully automated sales machine.',
+        'did.label': 'What I Did',
+        'b1.title': 'Luxury UI/UX Design',
+        'b1.text': 'Designed a premium visual experience that matched the high price point — every pixel built to convert. Sticky promo banners, seasonal campaigns like Mother\'s Day, and a mobile-first layout that felt as premium as the product.',
+        'b2.title': 'Bundle & Upsell Funnels',
+        'b2.text': 'Engineered custom bundle and upsell funnels that pushed customers toward higher-value orders on every visit — directly increasing average order value with every transaction.',
+        'b3.title': 'Klaviyo Integration',
+        'b3.text': 'Full Klaviyo setup — lead capture forms, dynamic pop-ups with 15% discount offers, and automated email flows that brought customers back and converted abandoned carts.',
+        'b4.title': 'Performance Optimisation',
+        'b4.text': 'Delivered perfect mobile performance despite running multiple third-party marketing apps simultaneously. Zero speed compromise, seamless experience from first click to checkout.',
+        'result.label': 'Result',
+        'result.headline': 'A store that didn\'t just look good — it made money.',
+        'rf1': '$5,000 / month profit', 'rf2': 'Automated sales funnel', 'rf3': 'High repeat purchase rate',
+        'stack.label': 'Tech Stack',
+      },
+      de: {
+        'nav.back': '← Zurück zu Projekten', 'nav.next': 'Nächstes Projekt →',
+        'hero.tag': 'E-Commerce · Shopify · US-Markt',
+        'hero.sub': 'Luxus-Parfümshop — Gebaut für Umsatz',
+        'hero.tagline': '„Keine Website gebaut — eine Umsatzmaschine."',
+        'stat1': 'Monatlicher Gewinn', 'stat2': 'Design & Entwicklung', 'stat3': 'Alleine gebaut & gestartet',
+        'overview.label': 'Übersicht',
+        'overview.text': 'Kiss of Aroma ist ein Premium-Parfüm-Dropshipping-Shop, der von Grund auf für den US-Markt entwickelt wurde. Das Ziel war klar — maximaler Umsatz durch cleveres Engineering und Conversion-Optimierung. Bereits in den ersten Monaten erwirtschaftete der Shop $5.000 monatlichen Gewinn als vollständig automatisierte Verkaufsmaschine.',
+        'did.label': 'Was ich gemacht habe',
+        'b1.title': 'Luxus-UI/UX-Design',
+        'b1.text': 'Eine hochwertige visuelle Erfahrung, die zum Premium-Preisniveau passt — jedes Pixel auf Conversion ausgerichtet. Klebende Promo-Banner, saisonale Kampagnen wie Muttertag und ein mobiles Layout, das genauso premium wirkt wie das Produkt.',
+        'b2.title': 'Bundle- & Upsell-Funnels',
+        'b2.text': 'Individuelle Bundle- und Upsell-Funnels, die Kunden bei jedem Besuch zu höherwertigen Bestellungen bewegen — der durchschnittliche Bestellwert steigt bei jeder Transaktion direkt.',
+        'b3.title': 'Klaviyo-Integration',
+        'b3.text': 'Vollständiges Klaviyo-Setup — Lead-Capture-Formulare, dynamische Pop-ups mit 15%-Rabattangeboten und automatisierte E-Mail-Flows, die Kunden zurückbrachten und Warenkörbe wieder aktivierten.',
+        'b4.title': 'Performance-Optimierung',
+        'b4.text': 'Perfekte mobile Performance trotz mehrerer gleichzeitig laufender Marketing-Apps von Drittanbietern. Kein Geschwindigkeitsverlust, nahtlose Erfahrung vom ersten Klick bis zum Checkout.',
+        'result.label': 'Ergebnis',
+        'result.headline': 'Ein Shop, der nicht nur gut aussah — er verdiente Geld.',
+        'rf1': '$5.000 / Monat Gewinn', 'rf2': 'Automatisierter Verkaufsfunnel', 'rf3': 'Hohe Wiederkaufrate',
+        'stack.label': 'Tech Stack',
+      }
+    };
+    function applyLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = t[lang][el.dataset.i18n];
+        if (v !== undefined) el.textContent = v;
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+  </script>
 </body>
 </html>

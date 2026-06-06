@@ -9,391 +9,148 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #000000;
-      --text: #ffffff;
-      --secondary: #666666;
-      --border: #222222;
-      --pill-border: #333333;
-      --font: 'DM Sans', sans-serif;
-    }
-
+    :root { --bg:#000; --text:#fff; --secondary:#666; --border:#222; --pill-border:#333; --font:'DM Sans',sans-serif; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    body { background:var(--bg); color:var(--text); font-family:var(--font); font-weight:400; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; transition:opacity .2s; }
+    a:hover { opacity:.6; }
+    hr { border:none; border-top:1px solid var(--border); }
+    .container { max-width:960px; margin:0 auto; padding:0 48px; }
+    nav { padding:32px 48px; max-width:960px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .nav-logo { font-size:14px; font-weight:500; letter-spacing:.05em; }
+    .nav-right { display:flex; align-items:center; gap:24px; }
+    .nav-back { font-size:13px; color:var(--secondary); }
+    .lang-switch { display:flex; gap:8px; align-items:center; }
+    .lang-btn { font-family:var(--font); font-size:12px; font-weight:500; letter-spacing:.06em; color:var(--secondary); background:none; border:none; cursor:pointer; padding:0; transition:opacity .2s; }
+    .lang-btn:hover { opacity:.6; }
+    .lang-btn.active { color:var(--text); }
+    .lang-divider { font-size:11px; color:var(--border); }
+    .section { padding:80px 0; }
+    .section-label { font-size:11px; color:var(--secondary); letter-spacing:.12em; text-transform:uppercase; margin-bottom:40px; }
+    #hero { padding:80px 0 96px; }
+    .hero-tag { font-size:12px; color:var(--secondary); letter-spacing:.08em; text-transform:uppercase; margin-bottom:32px; }
+    .hero-h1 { font-size:clamp(56px,10vw,112px); font-weight:300; line-height:.95; letter-spacing:-.04em; margin-bottom:24px; }
+    .hero-sub { font-size:clamp(16px,2.5vw,22px); font-weight:300; color:var(--secondary); letter-spacing:-.01em; margin-bottom:20px; }
+    .hero-tagline { font-size:15px; font-style:italic; font-weight:300; color:var(--secondary); margin-bottom:80px; }
+    .hero-stats { display:flex; gap:64px; flex-wrap:wrap; }
+    .stat { display:flex; flex-direction:column; gap:4px; }
+    .stat-number { font-size:clamp(28px,4vw,40px); font-weight:300; letter-spacing:-.03em; line-height:1; }
+    .stat-label { font-size:11px; color:var(--secondary); letter-spacing:.06em; text-transform:uppercase; }
+    .overview-text { font-size:clamp(16px,2vw,20px); font-weight:300; line-height:1.8; color:var(--secondary); max-width:680px; }
+    .blocks-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px 80px; }
+    .block-title { font-size:15px; font-weight:500; letter-spacing:-.01em; margin-bottom:12px; }
+    .block-text { font-size:14px; font-weight:300; color:var(--secondary); line-height:1.7; }
+    .result-headline { font-size:clamp(22px,3.5vw,36px); font-weight:300; letter-spacing:-.02em; margin-bottom:56px; max-width:600px; }
+    .result-facts { display:flex; flex-wrap:wrap; }
+    .result-fact { font-size:14px; color:var(--secondary); padding-right:40px; margin-right:40px; border-right:1px solid var(--border); }
+    .result-fact:last-child { border-right:none; padding-right:0; margin-right:0; }
+    .pills { display:flex; flex-wrap:wrap; gap:10px; }
+    .pill { font-size:12px; font-weight:400; color:var(--text); border:1px solid var(--pill-border); padding:6px 14px; border-radius:4px; letter-spacing:.02em; }
+    .links-list { display:flex; flex-direction:column; gap:20px; }
+    .project-link-item { display:flex; align-items:baseline; gap:16px; }
+    .link-label { font-size:12px; color:var(--secondary); letter-spacing:.04em; text-transform:uppercase; min-width:100px; flex-shrink:0; }
+    .link-url { font-size:15px; font-weight:300; color:var(--text); border-bottom:1px solid var(--border); padding-bottom:2px; transition:opacity .2s, border-color .2s; }
+    .link-url:hover { opacity:.6; border-color:var(--secondary); }
+    #bottom-nav { padding:64px 0 80px; }
+    .bottom-nav-inner { display:flex; justify-content:space-between; align-items:center; }
+    .bottom-nav-inner a { font-size:14px; color:var(--secondary); }
+    @media (max-width:768px) {
+      .container { padding:0 24px; } nav { padding:24px; }
+      #hero { padding:56px 0 72px; } .hero-stats { gap:40px; }
+      .blocks-grid { grid-template-columns:1fr; gap:40px; }
+      .result-facts { flex-direction:column; }
+      .result-fact { border-right:none; padding-right:0; margin-right:0; border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:16px; }
+      .result-fact:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
+      .project-link-item { flex-direction:column; gap:6px; } .link-label { min-width:unset; }
+      .section { padding:56px 0; } #bottom-nav { padding:48px 0 64px; }
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    a:hover { opacity: 0.6; }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ── NAV ── */
-    nav {
-      padding: 32px 48px;
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-logo {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-back {
-      font-size: 13px;
-      color: var(--secondary);
-    }
-
-    /* ── SECTION BASE ── */
-    .section {
-      padding: 80px 0;
-    }
-
-    .section-label {
-      font-size: 11px;
-      color: var(--secondary);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    /* ── HERO ── */
-    #hero {
-      padding: 80px 0 96px;
-    }
-
-    .hero-tag {
-      font-size: 12px;
-      color: var(--secondary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-
-    .hero-h1 {
-      font-size: clamp(56px, 10vw, 112px);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      margin-bottom: 24px;
-    }
-
-    .hero-sub {
-      font-size: clamp(16px, 2.5vw, 22px);
-      font-weight: 300;
-      color: var(--secondary);
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-
-    .hero-tagline {
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--secondary);
-      margin-bottom: 80px;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 64px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .stat-number {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 300;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--secondary);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* ── OVERVIEW ── */
-    .overview-text {
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--secondary);
-      max-width: 680px;
-    }
-
-    /* ── WHAT I DID ── */
-    .blocks-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px 80px;
-    }
-
-    .block-title {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    .block-text {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--secondary);
-      line-height: 1.7;
-    }
-
-    /* ── RESULT ── */
-    .result-headline {
-      font-size: clamp(22px, 3.5vw, 36px);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      margin-bottom: 56px;
-      max-width: 600px;
-    }
-
-    .result-facts {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .result-fact {
-      font-size: 14px;
-      color: var(--secondary);
-      padding-right: 40px;
-      margin-right: 40px;
-      border-right: 1px solid var(--border);
-    }
-
-    .result-fact:last-child {
-      border-right: none;
-      padding-right: 0;
-      margin-right: 0;
-    }
-
-    /* ── STACK ── */
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .pill {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text);
-      border: 1px solid var(--pill-border);
-      padding: 6px 14px;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-    }
-
-    /* ── LINKS ── */
-    .links-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .project-link-item {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-    }
-
-    .link-label {
-      font-size: 12px;
-      color: var(--secondary);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      min-width: 100px;
-      flex-shrink: 0;
-    }
-
-    .link-url {
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--text);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
-      transition: opacity 0.2s, border-color 0.2s;
-    }
-
-    .link-url:hover {
-      opacity: 0.6;
-      border-color: var(--secondary);
-    }
-
-    /* ── BOTTOM NAV ── */
-    #bottom-nav {
-      padding: 64px 0 80px;
-    }
-
-    .bottom-nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .bottom-nav-inner a {
-      font-size: 14px;
-      color: var(--secondary);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-      nav { padding: 24px; }
-
-      #hero { padding: 56px 0 72px; }
-      .hero-stats { gap: 40px; }
-
-      .blocks-grid { grid-template-columns: 1fr; gap: 40px; }
-
-      .result-facts { flex-direction: column; gap: 0; }
-      .result-fact {
-        border-right: none;
-        padding-right: 0;
-        margin-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 16px;
-        margin-bottom: 16px;
-      }
-      .result-fact:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-
-      .project-link-item { flex-direction: column; gap: 6px; }
-      .link-label { min-width: unset; }
-
-      .section { padding: 56px 0; }
-      #bottom-nav { padding: 48px 0 64px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-stats { gap: 28px; }
-    }
+    @media (max-width:480px) { .hero-stats { gap:28px; } }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">TS</a>
-    <a href="index.html#work" class="nav-back">← Back to Work</a>
+    <div class="nav-right">
+      <a href="index.html#work" class="nav-back" data-i18n="nav.back">← Back to Work</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-divider">/</span>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
   </nav>
 
   <div class="container">
 
-    <!-- HERO -->
     <section id="hero">
-      <p class="hero-tag">E-commerce · Shopify · US Market · Custom Theme</p>
+      <p class="hero-tag" data-i18n="hero.tag">E-commerce · Shopify · US Market · Custom Theme</p>
       <h1 class="hero-h1">CASTO</h1>
-      <p class="hero-sub">Premium Men's Brand — Custom Shopify From Scratch</p>
-      <p class="hero-tagline">"No templates. Built brutal from scratch."</p>
+      <p class="hero-sub" data-i18n="hero.sub">Premium Men's Brand — Custom Shopify From Scratch</p>
+      <p class="hero-tagline" data-i18n="hero.tagline">"No templates. Built brutal from scratch."</p>
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-number">0%</span>
-          <span class="stat-label">Template Used</span>
+          <span class="stat-label" data-i18n="stat1">Template Used</span>
         </div>
         <div class="stat">
           <span class="stat-number">100%</span>
-          <span class="stat-label">Custom Code</span>
+          <span class="stat-label" data-i18n="stat2">Custom Code</span>
         </div>
         <div class="stat">
           <span class="stat-number">US</span>
-          <span class="stat-label">Target Market</span>
+          <span class="stat-label" data-i18n="stat3">Target Market</span>
         </div>
       </div>
     </section>
 
     <hr />
 
-    <!-- OVERVIEW -->
     <section class="section">
-      <p class="section-label">Overview</p>
-      <p class="overview-text">CASTO is a premium men's aesthetics brand targeting the US market. The brief was simple — no generic templates, no compromises. Build a unique dark masculine identity from zero that resonates with the audience and drives sales. The result is a fully custom storefront that looks nothing like any other Shopify store.</p>
+      <p class="section-label" data-i18n="overview.label">Overview</p>
+      <p class="overview-text" data-i18n="overview.text">CASTO is a premium men's aesthetics brand targeting the US market. The brief was simple — no generic templates, no compromises. Build a unique dark masculine identity from zero that resonates with the audience and drives sales. The result is a fully custom storefront that looks nothing like any other Shopify store.</p>
     </section>
 
     <hr />
 
-    <!-- WHAT I DID -->
     <section class="section">
-      <p class="section-label">What I Did</p>
+      <p class="section-label" data-i18n="did.label">What I Did</p>
       <div class="blocks-grid">
-
         <div class="block">
-          <h3 class="block-title">Custom Shopify Theme</h3>
-          <p class="block-text">Built a complete theme from scratch using Liquid, JavaScript and CSS — every line written by hand. Zero template dependencies, zero compromises on the design vision.</p>
+          <h3 class="block-title" data-i18n="b1.title">Custom Shopify Theme</h3>
+          <p class="block-text" data-i18n="b1.text">Built a complete theme from scratch using Liquid, JavaScript and CSS — every line written by hand. Zero template dependencies, zero compromises on the design vision.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">Dark Premium UI/UX</h3>
-          <p class="block-text">Designed a high-end dark interface with sharp serif typography and a scientific authority aesthetic. Every design decision made to match the brand's brutal masculine positioning.</p>
+          <h3 class="block-title" data-i18n="b2.title">Dark Premium UI/UX</h3>
+          <p class="block-text" data-i18n="b2.text">Designed a high-end dark interface with sharp serif typography and a scientific authority aesthetic. Every design decision made to match the brand's brutal masculine positioning.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">Custom Interactive Elements</h3>
-          <p class="block-text">Engineered a dynamic marquee banner, unique product cards with smooth interactions, and a seamless Add to Bag flow that removes every friction point from the purchase journey.</p>
+          <h3 class="block-title" data-i18n="b3.title">Custom Interactive Elements</h3>
+          <p class="block-text" data-i18n="b3.text">Engineered a dynamic marquee banner, unique product cards with smooth interactions, and a seamless Add to Bag flow that removes every friction point from the purchase journey.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">US Market Optimisation</h3>
-          <p class="block-text">Fully optimised for the competitive US e-commerce market — lightning-fast load times, perfect mobile experience on every device, ready to compete at the highest level.</p>
+          <h3 class="block-title" data-i18n="b4.title">US Market Optimisation</h3>
+          <p class="block-text" data-i18n="b4.text">Fully optimised for the competitive US e-commerce market — lightning-fast load times, perfect mobile experience on every device, ready to compete at the highest level.</p>
         </div>
-
       </div>
     </section>
 
     <hr />
 
-    <!-- RESULT -->
     <section class="section">
-      <p class="section-label">Result</p>
-      <p class="result-headline">A storefront that stands out in a sea of identical Shopify stores.</p>
+      <p class="section-label" data-i18n="result.label">Result</p>
+      <p class="result-headline" data-i18n="result.headline">A storefront that stands out in a sea of identical Shopify stores.</p>
       <div class="result-facts">
-        <span class="result-fact">100% custom — zero templates</span>
-        <span class="result-fact">Dark premium UI/UX</span>
-        <span class="result-fact">US market ready</span>
+        <span class="result-fact" data-i18n="rf1">100% custom — zero templates</span>
+        <span class="result-fact" data-i18n="rf2">Dark premium UI/UX</span>
+        <span class="result-fact" data-i18n="rf3">US market ready</span>
       </div>
     </section>
 
     <hr />
 
-    <!-- STACK -->
     <section class="section">
-      <p class="section-label">Tech Stack</p>
+      <p class="section-label" data-i18n="stack.label">Tech Stack</p>
       <div class="pills">
         <span class="pill">Shopify</span>
         <span class="pill">Liquid</span>
@@ -406,12 +163,11 @@
 
     <hr />
 
-    <!-- LINKS -->
     <section class="section">
-      <p class="section-label">Live Project</p>
+      <p class="section-label" data-i18n="links.label">Live Project</p>
       <div class="links-list">
         <div class="project-link-item">
-          <span class="link-label">Visit Site</span>
+          <span class="link-label" data-i18n="link1.label">Visit Site</span>
           <a href="https://castoclub.com" target="_blank" rel="noopener" class="link-url">castoclub.com ↗</a>
         </div>
       </div>
@@ -419,15 +175,73 @@
 
     <hr />
 
-    <!-- BOTTOM NAV -->
     <section id="bottom-nav">
       <div class="bottom-nav-inner">
-        <a href="index.html#work">← Back to Work</a>
-        <a href="expert-oto.html">Next Project →</a>
+        <a href="index.html#work" data-i18n="nav.back">← Back to Work</a>
+        <a href="expert-oto.html" data-i18n="nav.next">Next Project →</a>
       </div>
     </section>
 
   </div>
 
+  <script>
+    const t = {
+      en: {
+        'nav.back': '← Back to Work', 'nav.next': 'Next Project →',
+        'hero.tag': 'E-commerce · Shopify · US Market · Custom Theme',
+        'hero.sub': 'Premium Men\'s Brand — Custom Shopify From Scratch',
+        'hero.tagline': '"No templates. Built brutal from scratch."',
+        'stat1': 'Template Used', 'stat2': 'Custom Code', 'stat3': 'Target Market',
+        'overview.label': 'Overview',
+        'overview.text': 'CASTO is a premium men\'s aesthetics brand targeting the US market. The brief was simple — no generic templates, no compromises. Build a unique dark masculine identity from zero that resonates with the audience and drives sales. The result is a fully custom storefront that looks nothing like any other Shopify store.',
+        'did.label': 'What I Did',
+        'b1.title': 'Custom Shopify Theme',
+        'b1.text': 'Built a complete theme from scratch using Liquid, JavaScript and CSS — every line written by hand. Zero template dependencies, zero compromises on the design vision.',
+        'b2.title': 'Dark Premium UI/UX',
+        'b2.text': 'Designed a high-end dark interface with sharp serif typography and a scientific authority aesthetic. Every design decision made to match the brand\'s brutal masculine positioning.',
+        'b3.title': 'Custom Interactive Elements',
+        'b3.text': 'Engineered a dynamic marquee banner, unique product cards with smooth interactions, and a seamless Add to Bag flow that removes every friction point from the purchase journey.',
+        'b4.title': 'US Market Optimisation',
+        'b4.text': 'Fully optimised for the competitive US e-commerce market — lightning-fast load times, perfect mobile experience on every device, ready to compete at the highest level.',
+        'result.label': 'Result',
+        'result.headline': 'A storefront that stands out in a sea of identical Shopify stores.',
+        'rf1': '100% custom — zero templates', 'rf2': 'Dark premium UI/UX', 'rf3': 'US market ready',
+        'stack.label': 'Tech Stack',
+        'links.label': 'Live Project', 'link1.label': 'Visit Site',
+      },
+      de: {
+        'nav.back': '← Zurück zu Projekten', 'nav.next': 'Nächstes Projekt →',
+        'hero.tag': 'E-Commerce · Shopify · US-Markt · Custom Theme',
+        'hero.sub': 'Premium-Männermarke — Shopify komplett von Grund auf',
+        'hero.tagline': '„Keine Templates. Brutal von Null gebaut."',
+        'stat1': 'Template verwendet', 'stat2': 'Individueller Code', 'stat3': 'Zielmarkt',
+        'overview.label': 'Übersicht',
+        'overview.text': 'CASTO ist eine Premium-Männermarke für den US-Markt. Der Auftrag war klar — keine generischen Templates, keine Kompromisse. Eine einzigartige, dunkle maskuline Identität von Grund auf aufbauen, die die Zielgruppe anspricht und Verkäufe generiert. Das Ergebnis ist ein vollständig individueller Shop, der keinem anderen Shopify-Store ähnelt.',
+        'did.label': 'Was ich gemacht habe',
+        'b1.title': 'Individuelles Shopify-Theme',
+        'b1.text': 'Vollständiges Theme mit Liquid, JavaScript und CSS von Grund auf gebaut — jede Zeile handgeschrieben. Keine Template-Abhängigkeiten, keine Kompromisse bei der Design-Vision.',
+        'b2.title': 'Dunkles Premium-UI/UX',
+        'b2.text': 'Hochwertige dunkle Oberfläche mit markanter Serif-Typografie und wissenschaftlichem Autoritäts-Ästhetik. Jede Designentscheidung passend zur brutalen maskulinen Positionierung der Marke.',
+        'b3.title': 'Individuelle interaktive Elemente',
+        'b3.text': 'Dynamisches Laufband-Banner entwickelt, einzigartige Produktkarten mit flüssigen Interaktionen und ein nahtloser In-den-Warenkorb-Flow, der jeden Reibungspunkt aus dem Kaufprozess entfernt.',
+        'b4.title': 'US-Markt-Optimierung',
+        'b4.text': 'Vollständig für den wettbewerbsintensiven US-E-Commerce-Markt optimiert — blitzschnelle Ladezeiten, perfekte mobile Erfahrung auf jedem Gerät, bereit auf höchstem Niveau zu konkurrieren.',
+        'result.label': 'Ergebnis',
+        'result.headline': 'Ein Shop, der in einem Meer identischer Shopify-Stores heraussticht.',
+        'rf1': '100% individuell — null Templates', 'rf2': 'Dunkles Premium-UI/UX', 'rf3': 'US-Markt-ready',
+        'stack.label': 'Tech Stack',
+        'links.label': 'Live-Projekt', 'link1.label': 'Website besuchen',
+      }
+    };
+    function applyLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = t[lang][el.dataset.i18n];
+        if (v !== undefined) el.textContent = v;
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+  </script>
 </body>
 </html>

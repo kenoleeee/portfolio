@@ -9,353 +9,142 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #000000;
-      --text: #ffffff;
-      --secondary: #666666;
-      --border: #222222;
-      --pill-border: #333333;
-      --font: 'DM Sans', sans-serif;
-    }
-
+    :root { --bg:#000; --text:#fff; --secondary:#666; --border:#222; --pill-border:#333; --font:'DM Sans',sans-serif; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    body { background:var(--bg); color:var(--text); font-family:var(--font); font-weight:400; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; transition:opacity .2s; }
+    a:hover { opacity:.6; }
+    hr { border:none; border-top:1px solid var(--border); }
+    .container { max-width:960px; margin:0 auto; padding:0 48px; }
+    nav { padding:32px 48px; max-width:960px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .nav-logo { font-size:14px; font-weight:500; letter-spacing:.05em; }
+    .nav-right { display:flex; align-items:center; gap:24px; }
+    .nav-back { font-size:13px; color:var(--secondary); }
+    .lang-switch { display:flex; gap:8px; align-items:center; }
+    .lang-btn { font-family:var(--font); font-size:12px; font-weight:500; letter-spacing:.06em; color:var(--secondary); background:none; border:none; cursor:pointer; padding:0; transition:opacity .2s; }
+    .lang-btn:hover { opacity:.6; }
+    .lang-btn.active { color:var(--text); }
+    .lang-divider { font-size:11px; color:var(--border); }
+    .section { padding:80px 0; }
+    .section-label { font-size:11px; color:var(--secondary); letter-spacing:.12em; text-transform:uppercase; margin-bottom:40px; }
+    #hero { padding:80px 0 96px; }
+    .hero-tag { font-size:12px; color:var(--secondary); letter-spacing:.08em; text-transform:uppercase; margin-bottom:32px; }
+    .hero-h1 { font-size:clamp(56px,10vw,112px); font-weight:300; line-height:.95; letter-spacing:-.04em; margin-bottom:24px; }
+    .hero-sub { font-size:clamp(16px,2.5vw,22px); font-weight:300; color:var(--secondary); letter-spacing:-.01em; margin-bottom:20px; }
+    .hero-tagline { font-size:15px; font-style:italic; font-weight:300; color:var(--secondary); margin-bottom:80px; }
+    .hero-stats { display:flex; gap:64px; flex-wrap:wrap; }
+    .stat { display:flex; flex-direction:column; gap:4px; }
+    .stat-number { font-size:clamp(28px,4vw,40px); font-weight:300; letter-spacing:-.03em; line-height:1; }
+    .stat-label { font-size:11px; color:var(--secondary); letter-spacing:.06em; text-transform:uppercase; }
+    .overview-text { font-size:clamp(16px,2vw,20px); font-weight:300; line-height:1.8; color:var(--secondary); max-width:680px; }
+    .blocks-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px 80px; }
+    .block-title { font-size:15px; font-weight:500; letter-spacing:-.01em; margin-bottom:12px; }
+    .block-text { font-size:14px; font-weight:300; color:var(--secondary); line-height:1.7; }
+    .result-headline { font-size:clamp(22px,3.5vw,36px); font-weight:300; letter-spacing:-.02em; margin-bottom:56px; max-width:640px; line-height:1.3; }
+    .result-facts { display:flex; flex-wrap:wrap; }
+    .result-fact { font-size:14px; color:var(--secondary); padding-right:40px; margin-right:40px; border-right:1px solid var(--border); }
+    .result-fact:last-child { border-right:none; padding-right:0; margin-right:0; }
+    .pills { display:flex; flex-wrap:wrap; gap:10px; }
+    .pill { font-size:12px; font-weight:400; color:var(--text); border:1px solid var(--pill-border); padding:6px 14px; border-radius:4px; letter-spacing:.02em; }
+    #bottom-nav { padding:64px 0 80px; }
+    .bottom-nav-inner { display:flex; justify-content:space-between; align-items:center; }
+    .bottom-nav-inner a { font-size:14px; color:var(--secondary); }
+    @media (max-width:768px) {
+      .container { padding:0 24px; } nav { padding:24px; }
+      #hero { padding:56px 0 72px; } .hero-stats { gap:40px; }
+      .blocks-grid { grid-template-columns:1fr; gap:40px; }
+      .result-facts { flex-direction:column; }
+      .result-fact { border-right:none; padding-right:0; margin-right:0; border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:16px; }
+      .result-fact:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
+      .section { padding:56px 0; } #bottom-nav { padding:48px 0 64px; }
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    a:hover { opacity: 0.6; }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ── NAV ── */
-    nav {
-      padding: 32px 48px;
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-logo {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-back {
-      font-size: 13px;
-      color: var(--secondary);
-    }
-
-    /* ── SECTION BASE ── */
-    .section {
-      padding: 80px 0;
-    }
-
-    .section-label {
-      font-size: 11px;
-      color: var(--secondary);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    /* ── HERO ── */
-    #hero {
-      padding: 80px 0 96px;
-    }
-
-    .hero-tag {
-      font-size: 12px;
-      color: var(--secondary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-
-    .hero-h1 {
-      font-size: clamp(56px, 10vw, 112px);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      margin-bottom: 24px;
-    }
-
-    .hero-sub {
-      font-size: clamp(16px, 2.5vw, 22px);
-      font-weight: 300;
-      color: var(--secondary);
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-
-    .hero-tagline {
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--secondary);
-      margin-bottom: 80px;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 64px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .stat-number {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 300;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--secondary);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* ── OVERVIEW ── */
-    .overview-text {
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--secondary);
-      max-width: 680px;
-    }
-
-    /* ── WHAT I DID ── */
-    .blocks-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px 80px;
-    }
-
-    .block-title {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    .block-text {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--secondary);
-      line-height: 1.7;
-    }
-
-    /* ── RESULT ── */
-    .result-headline {
-      font-size: clamp(22px, 3.5vw, 36px);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      margin-bottom: 56px;
-      max-width: 640px;
-      line-height: 1.3;
-    }
-
-    .result-facts {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .result-fact {
-      font-size: 14px;
-      color: var(--secondary);
-      padding-right: 40px;
-      margin-right: 40px;
-      border-right: 1px solid var(--border);
-    }
-
-    .result-fact:last-child {
-      border-right: none;
-      padding-right: 0;
-      margin-right: 0;
-    }
-
-    /* ── STACK ── */
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .pill {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text);
-      border: 1px solid var(--pill-border);
-      padding: 6px 14px;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-    }
-
-    /* ── BOTTOM NAV ── */
-    #bottom-nav {
-      padding: 64px 0 80px;
-    }
-
-    .bottom-nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .bottom-nav-inner a {
-      font-size: 14px;
-      color: var(--secondary);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-      nav { padding: 24px; }
-
-      #hero { padding: 56px 0 72px; }
-      .hero-stats { gap: 40px; }
-
-      .blocks-grid { grid-template-columns: 1fr; gap: 40px; }
-
-      .result-facts { flex-direction: column; gap: 0; }
-      .result-fact {
-        border-right: none;
-        padding-right: 0;
-        margin-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 16px;
-        margin-bottom: 16px;
-      }
-      .result-fact:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-
-      .section { padding: 56px 0; }
-      #bottom-nav { padding: 48px 0 64px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-stats { gap: 28px; }
-    }
+    @media (max-width:480px) { .hero-stats { gap:28px; } }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">TS</a>
-    <a href="index.html#work" class="nav-back">← Back to Work</a>
+    <div class="nav-right">
+      <a href="index.html#work" class="nav-back" data-i18n="nav.back">← Back to Work</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-divider">/</span>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
   </nav>
 
   <div class="container">
 
-    <!-- HERO -->
     <section id="hero">
-      <p class="hero-tag">Shopify App · React · US Market · Client Project</p>
+      <p class="hero-tag" data-i18n="hero.tag">Shopify App · React · US Market · Client Project</p>
       <h1 class="hero-h1">Expert OTO</h1>
-      <p class="hero-sub">Custom Post-Purchase Upsell App — Built in 4 Days</p>
-      <p class="hero-tagline">"4 days to build. +35% to every order."</p>
+      <p class="hero-sub" data-i18n="hero.sub">Custom Post-Purchase Upsell App — Built in 4 Days</p>
+      <p class="hero-tagline" data-i18n="hero.tagline">"4 days to build. +35% to every order."</p>
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-number">+35%</span>
-          <span class="stat-label">Average Order Value Increase</span>
+          <span class="stat-label" data-i18n="stat1">Average Order Value Increase</span>
         </div>
         <div class="stat">
           <span class="stat-number">4 Days</span>
-          <span class="stat-label">Build & Ship</span>
+          <span class="stat-label" data-i18n="stat2">Build & Ship</span>
         </div>
         <div class="stat">
           <span class="stat-number">∞</span>
-          <span class="stat-label">Pays Every Day</span>
+          <span class="stat-label" data-i18n="stat3">Pays Every Day</span>
         </div>
       </div>
     </section>
 
     <hr />
 
-    <!-- OVERVIEW -->
     <section class="section">
-      <p class="section-label">Overview</p>
-      <p class="overview-text">RationFit sells nutrition recipes on the US market. They were leaving money on the table after every checkout. I built a custom Shopify app from scratch that presents targeted post-purchase offers the moment a customer completes their order. Result: average order value increased by 35% — completely on autopilot.</p>
+      <p class="section-label" data-i18n="overview.label">Overview</p>
+      <p class="overview-text" data-i18n="overview.text">RationFit sells nutrition recipes on the US market. They were leaving money on the table after every checkout. I built a custom Shopify app from scratch that presents targeted post-purchase offers the moment a customer completes their order. Result: average order value increased by 35% — completely on autopilot.</p>
     </section>
 
     <hr />
 
-    <!-- WHAT I DID -->
     <section class="section">
-      <p class="section-label">What I Did</p>
+      <p class="section-label" data-i18n="did.label">What I Did</p>
       <div class="blocks-grid">
-
         <div class="block">
-          <h3 class="block-title">Post-Purchase Upsell Engine</h3>
-          <p class="block-text">Built a smart offer engine that triggers immediately after checkout with personalised discount offers — catching customers at peak buying intent when they are most likely to add.</p>
+          <h3 class="block-title" data-i18n="b1.title">Post-Purchase Upsell Engine</h3>
+          <p class="block-text" data-i18n="b1.text">Built a smart offer engine that triggers immediately after checkout with personalised discount offers — catching customers at peak buying intent when they are most likely to add.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">Custom Admin Panel</h3>
-          <p class="block-text">Engineered a clean admin panel so the RationFit team can independently manage products, names, descriptions and prices in the upsell flow. Zero developer dependency after handoff.</p>
+          <h3 class="block-title" data-i18n="b2.title">Custom Admin Panel</h3>
+          <p class="block-text" data-i18n="b2.text">Engineered a clean admin panel so the RationFit team can independently manage products, names, descriptions and prices in the upsell flow. Zero developer dependency after handoff.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">React & Shopify Integration</h3>
-          <p class="block-text">Built entirely with React and JavaScript, integrated directly with Shopify API. No third-party upsell tools, no monthly fees — complete ownership for the client.</p>
+          <h3 class="block-title" data-i18n="b3.title">React & Shopify Integration</h3>
+          <p class="block-text" data-i18n="b3.text">Built entirely with React and JavaScript, integrated directly with Shopify API. No third-party upsell tools, no monthly fees — complete ownership for the client.</p>
         </div>
-
         <div class="block">
-          <h3 class="block-title">4 Days to Production</h3>
-          <p class="block-text">Designed, built and delivered a production-ready custom app in 4 days. Full UI matching the store brand, native Shopify checkout feel, ready to ship.</p>
+          <h3 class="block-title" data-i18n="b4.title">4 Days to Production</h3>
+          <p class="block-text" data-i18n="b4.text">Designed, built and delivered a production-ready custom app in 4 days. Full UI matching the store brand, native Shopify checkout feel, ready to ship.</p>
         </div>
-
       </div>
     </section>
 
     <hr />
 
-    <!-- RESULT -->
     <section class="section">
-      <p class="section-label">Result</p>
-      <p class="result-headline">Every order now generates 35% more revenue. A one-time build that pays for itself every day.</p>
+      <p class="section-label" data-i18n="result.label">Result</p>
+      <p class="result-headline" data-i18n="result.headline">Every order now generates 35% more revenue. A one-time build that pays for itself every day.</p>
       <div class="result-facts">
-        <span class="result-fact">+35% average order value</span>
-        <span class="result-fact">Delivered in 4 days</span>
-        <span class="result-fact">Fully autonomous after handoff</span>
+        <span class="result-fact" data-i18n="rf1">+35% average order value</span>
+        <span class="result-fact" data-i18n="rf2">Delivered in 4 days</span>
+        <span class="result-fact" data-i18n="rf3">Fully autonomous after handoff</span>
       </div>
     </section>
 
     <hr />
 
-    <!-- STACK -->
     <section class="section">
-      <p class="section-label">Tech Stack</p>
+      <p class="section-label" data-i18n="stack.label">Tech Stack</p>
       <div class="pills">
         <span class="pill">React</span>
         <span class="pill">JavaScript</span>
@@ -367,15 +156,71 @@
 
     <hr />
 
-    <!-- BOTTOM NAV -->
     <section id="bottom-nav">
       <div class="bottom-nav-inner">
-        <a href="index.html#work">← Back to Work</a>
-        <a href="italk.html">Next Project →</a>
+        <a href="index.html#work" data-i18n="nav.back">← Back to Work</a>
+        <a href="italk.html" data-i18n="nav.next">Next Project →</a>
       </div>
     </section>
 
   </div>
 
+  <script>
+    const t = {
+      en: {
+        'nav.back': '← Back to Work', 'nav.next': 'Next Project →',
+        'hero.tag': 'Shopify App · React · US Market · Client Project',
+        'hero.sub': 'Custom Post-Purchase Upsell App — Built in 4 Days',
+        'hero.tagline': '"4 days to build. +35% to every order."',
+        'stat1': 'Average Order Value Increase', 'stat2': 'Build & Ship', 'stat3': 'Pays Every Day',
+        'overview.label': 'Overview',
+        'overview.text': 'RationFit sells nutrition recipes on the US market. They were leaving money on the table after every checkout. I built a custom Shopify app from scratch that presents targeted post-purchase offers the moment a customer completes their order. Result: average order value increased by 35% — completely on autopilot.',
+        'did.label': 'What I Did',
+        'b1.title': 'Post-Purchase Upsell Engine',
+        'b1.text': 'Built a smart offer engine that triggers immediately after checkout with personalised discount offers — catching customers at peak buying intent when they are most likely to add.',
+        'b2.title': 'Custom Admin Panel',
+        'b2.text': 'Engineered a clean admin panel so the RationFit team can independently manage products, names, descriptions and prices in the upsell flow. Zero developer dependency after handoff.',
+        'b3.title': 'React & Shopify Integration',
+        'b3.text': 'Built entirely with React and JavaScript, integrated directly with Shopify API. No third-party upsell tools, no monthly fees — complete ownership for the client.',
+        'b4.title': '4 Days to Production',
+        'b4.text': 'Designed, built and delivered a production-ready custom app in 4 days. Full UI matching the store brand, native Shopify checkout feel, ready to ship.',
+        'result.label': 'Result',
+        'result.headline': 'Every order now generates 35% more revenue. A one-time build that pays for itself every day.',
+        'rf1': '+35% average order value', 'rf2': 'Delivered in 4 days', 'rf3': 'Fully autonomous after handoff',
+        'stack.label': 'Tech Stack',
+      },
+      de: {
+        'nav.back': '← Zurück zu Projekten', 'nav.next': 'Nächstes Projekt →',
+        'hero.tag': 'Shopify-App · React · US-Markt · Kundenprojekt',
+        'hero.sub': 'Individuelle Post-Purchase-Upsell-App — In 4 Tagen gebaut',
+        'hero.tagline': '„4 Tage gebaut. +35% auf jede Bestellung."',
+        'stat1': 'Steigerung des ø Bestellwerts', 'stat2': 'Entwicklung & Launch', 'stat3': 'Zahlt sich täglich aus',
+        'overview.label': 'Übersicht',
+        'overview.text': 'RationFit verkauft Ernährungsrezepte auf dem US-Markt. Nach jedem Checkout ließen sie Geld liegen. Ich habe eine individuelle Shopify-App von Grund auf gebaut, die gezielt Post-Purchase-Angebote präsentiert, sobald ein Kunde seine Bestellung abschließt. Ergebnis: durchschnittlicher Bestellwert um 35% gestiegen — vollständig auf Autopilot.',
+        'did.label': 'Was ich gemacht habe',
+        'b1.title': 'Post-Purchase-Upsell-Engine',
+        'b1.text': 'Eine intelligente Angebotsengine entwickelt, die sofort nach dem Checkout mit personalisierten Rabattangeboten auslöst — Kunden werden zum Kaufhöhepunkt abgeholt, wenn die Kaufbereitschaft am höchsten ist.',
+        'b2.title': 'Individuelles Admin-Panel',
+        'b2.text': 'Ein übersichtliches Admin-Panel entwickelt, damit das RationFit-Team eigenständig Produkte, Namen, Beschreibungen und Preise im Upsell-Flow verwalten kann. Null Entwicklerabhängigkeit nach der Übergabe.',
+        'b3.title': 'React & Shopify-Integration',
+        'b3.text': 'Vollständig mit React und JavaScript entwickelt, direkt in die Shopify-API integriert. Keine Drittanbieter-Tools, keine monatlichen Gebühren — vollständige Eigenverantwortung für den Kunden.',
+        'b4.title': '4 Tage bis zur Produktion',
+        'b4.text': 'Eine produktionsreife individuelle App in 4 Tagen designed, entwickelt und übergeben. Vollständige UI passend zur Store-Marke, natives Shopify-Checkout-Gefühl, sofort einsatzbereit.',
+        'result.label': 'Ergebnis',
+        'result.headline': 'Jede Bestellung generiert jetzt 35% mehr Umsatz. Ein einmaliger Aufwand, der sich täglich auszahlt.',
+        'rf1': '+35% durchschnittlicher Bestellwert', 'rf2': 'In 4 Tagen geliefert', 'rf3': 'Nach Übergabe vollständig autonom',
+        'stack.label': 'Tech Stack',
+      }
+    };
+    function applyLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = t[lang][el.dataset.i18n];
+        if (v !== undefined) el.textContent = v;
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+  </script>
 </body>
 </html>
